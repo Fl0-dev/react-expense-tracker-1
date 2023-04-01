@@ -10,6 +10,7 @@ import {
     REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { loggerMiddleware } from "./middlewares/logger-middleware";
 
 // mise en place de redux-persist pour persister les données
 // mettre toutes les slices dans un seul reducer
@@ -37,7 +38,7 @@ const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).prepend(loggerMiddleware.middleware),//ajout du middleware logger
 });
 
 //mise en place du store persisté dans un persistor
