@@ -3,14 +3,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const expenseSlice = createSlice({
     name: "expenseSlice",
     initialState: {// initial state
+        income: 1000,
         expensesList: [],
     },
     reducers: { // reducers avec action à ajouter
-        addExpense: (state, action) => {
-            state.expensesList.push(action.payload);
-            console.log("addExpense", state.expensesList);
+        setIncome: (currentSlice, action) => {
+            currentSlice.income = Number.parseFloat(action.payload);//en float
+        },
+
+        addExpense: (currentSlice, action) => {
+            //utilisation du spred operator pour modifier le type de price
+            currentSlice.expensesList.push({...action.payload, price : Number.parseFloat(action.payload.price)});
         }
     }
 });
 
-export const { addExpense } = expenseSlice.actions;
+const { addExpense, setIncome } = expenseSlice.actions;
+export { addExpense, setIncome };
