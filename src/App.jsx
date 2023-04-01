@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import s from "./style.module.css";
 import { IncomeInput } from "containers/IncomeInput/IncomeInput";
 import { ExpenseTotal } from "containers/ExpenseTotal/ExpenseTotal";
+import { Logo } from "components/Logo/Logo";
 
 export function App() {
   // useSelector is a hook that allows you to extract data from the Redux store state, using a selector function.
@@ -12,7 +13,9 @@ export function App() {
   return (
     <div className={s.main_container}>
       <div className={`row ${s.header}`}>
-        <div className={`col-3`}>Logo</div>
+        <div className={`col-3`}>
+          <Logo title={"ISpent"} subtitle={"Track your expenses !"} />
+        </div>
         <div className={`col-9 ${s.income_input}`}>
           <IncomeInput />
         </div>
